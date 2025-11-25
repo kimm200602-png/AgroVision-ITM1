@@ -1,36 +1,26 @@
 name: Deploy AgroVision ITM1 CI/CD
-
 on:
   push:
     branches:
-      - main # Asegúrate que esta sea tu rama principal (main o master)
-
-jobs:
-  build_and_deploy:
-    runs-on: ubuntu-latest # El sistema operativo del runner de GitHub
-
-    steps:
-    - name: 1. Checkout del Código
-      uses: actions/checkout@v3
-      
-    - name: 2. Configurar Variables de Entorno y Secrets
-      # Carga las variables .env, incluyendo el secreto JWT para seguridad
-      run: |
-        echo "BACKEND_PORT=9101" >> .env
-        echo "FRONTEND_PORT=9401" >> .env
-        echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
-        
-    - name: 3. Construir y Levantar Contenedores (Despliegue)
-      # Este comando detiene y recrea los servicios con el código nuevo
-      run: |
-        docker-compose down 
-        docker-compose up --build -d 
-        
+          -main   
+build_and_deploy:
+runs-on: ubuntu-latest 
+  steps:
+  name: 1. Checkout del Código
+uses: actions/checkout@v3 
+  name: 2. Configurar Variables de Entorno y Secrets
+  run: |
+    echo "BACKEND_PORT=9101" >> .env
+    echo "FRONTEND_PORT=9401" >> .envGIT
+    echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env    
+  - name: 3. Construir y Levantar Contenedores (Despliegue)
+  run: |
+    docker-compose down 
+    docker-compose up --build -d 
     - name: 4. Verificar API de Salud (/health)
-      # CRÍTICO: Verifica que el endpoint /health responde OK [cite: 168]
-      run: |
-        sleep 5 # Espera a que el servidor FastAPI inicie
-        curl http://localhost:9101/health 
-        
-    - name: 5. Mensaje de Éxito
-      run: echo "✅ Servicio AgroVision ITM1 desplegado. ¡Éxito en el CI/CD!"
+  run: |
+  sleep 5 
+    curl http://localhost:9101/health      
+- name: 5. Mensaje de Éxito
+  run: echo "✅ Servicio AgroVision ITM1 desplegado. ¡Éxito en el CI/CD!"
+      
