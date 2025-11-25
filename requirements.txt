@@ -6,3 +6,5 @@ pydantic
 numpy
 opencv-python-headless # Para la Segmentación HSV (Pipeline de Análisis) [cite: 86, 87]
 Pillows
+
+# Activando CI/CD
