@@ -8,3 +8,4 @@ opencv-python-headless # Para la Segmentación HSV (Pipeline de Análisis) [cite
 Pillows
 
 # Activando CI/CD
+# Activando CI/CD final
