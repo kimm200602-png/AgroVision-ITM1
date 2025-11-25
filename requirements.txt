@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-multipart
+python-jose[cryptography] # Para la Autenticación Segura (JWT) [cite: 138, 139]
+pydantic
+numpy
+opencv-python-headless # Para la Segmentación HSV (Pipeline de Análisis) [cite: 86, 87]
+Pillows
